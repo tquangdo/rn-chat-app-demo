@@ -3,19 +3,16 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
-// import { AuthContext } from '../navigation/AuthProvider';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const SignupScreen = ({ navigation }) => {
     const [staEmail, setStaEmail] = useState();
     const [staPassword, setStaPassword] = useState();
-    const [staConfirmPassword, setStaConfirmPassword] = useState();
-
-    // const { contxtRegister } = useContext(AuthContext);
+    const { contxtRegister } = useContext(AuthContext);
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Create an account</Text>
-
+            <Text style={styles.text}>Tạo một tài khoản</Text>
             <FormInput
                 labelValue={staEmail}
                 onChangeText={(userEmail) => setStaEmail(userEmail)}
@@ -25,7 +22,6 @@ const SignupScreen = ({ navigation }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-
             <FormInput
                 labelValue={staPassword}
                 onChangeText={(userPassword) => setStaPassword(userPassword)}
@@ -33,49 +29,40 @@ const SignupScreen = ({ navigation }) => {
                 iconType="lock"
                 secureTextEntry={true}
             />
-
-            <FormInput
-                labelValue={staConfirmPassword}
-                onChangeText={(userPassword) => setStaConfirmPassword(userPassword)}
-                placeholderText="Confirm Password"
-                iconType="lock"
-                secureTextEntry={true}
-            />
-
             <FormButton
-                buttonTitle="Sign Up"
-            // onPress={() => register(staEmail, staPassword)}
+                buttonTitle="Dang ky"
+                onPress={() => contxtRegister(staEmail, staPassword)}
             />
 
             <View style={styles.textPrivate}>
                 <Text style={styles.color_textPrivate}>
-                    By registering, you confirm that you accept our{' '}
+                    Bằng cách đăng ký, bạn xác nhận rằng bạn sẽ chấp nhận {' '}
                 </Text>
-                <TouchableOpacity onPress={() => alert('Terms Clicked!')}>
+                <TouchableOpacity onPress={() => alert('Điều khoản dịch vụ')}>
                     <Text style={[styles.color_textPrivate, { color: '#e88832' }]}>
-                        Terms of service
+                        Điều khoản dịch vụ
                     </Text>
                 </TouchableOpacity>
-                <Text style={styles.color_textPrivate}> and </Text>
-                <Text style={[styles.color_textPrivate, { color: '#e88832' }]}>
-                    Privacy Policy
+                <Text style={styles.color_textPrivate}> va </Text>
+                <Text style={styles.color_textPrivate}>
+                    Chính sách bảo mật
                 </Text>
             </View>
 
             <View>
                 <SocialButton
-                    buttonTitle="Sign Up with Google"
+                    buttonTitle="Dang ky bang Google"
                     btnType="google"
                     color="#de4d41"
                     backgroundColor="#f5e7ea"
-                    onPress={() => { }}
+                    onPress={() => { alert('Dang ky bang Google') }}
                 />
             </View>
 
             <TouchableOpacity
                 style={styles.navButton}
                 onPress={() => navigation.navigate('Login')}>
-                <Text style={styles.navButtonText}>Have an account? Sign In</Text>
+                <Text style={styles.navButtonText}>Có tài khoản? Đăng nhập</Text>
             </TouchableOpacity>
         </View>
     );

@@ -10,13 +10,14 @@ import {
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
-// import { AuthContext } from '../navigation/AuthProvider';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const LoginScreen = ({ navigation }) => {
     const [staEmail, setStaEmail] = useState();
     const [staPassword, setStaPassword] = useState();
-
-    // const { contxtLogin, contxtGoogleLogin } = useContext(AuthContext);
+    const { contxtLogin,
+        // contxtGoogleLogin
+    } = useContext(AuthContext);
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -24,7 +25,7 @@ const LoginScreen = ({ navigation }) => {
                 source={require('../assets/rn-social-logo.png')}
                 style={styles.logo}
             />
-            <Text style={styles.text}>RN Social App</Text>
+            <Text style={styles.text}>RN Chat App (DoTQ)</Text>
 
             <FormInput
                 labelValue={staEmail}
@@ -45,21 +46,21 @@ const LoginScreen = ({ navigation }) => {
             />
 
             <FormButton
-                buttonTitle="Sign In"
-            // onPress={() => login(staEmail, staPassword)}
+                buttonTitle="Dang nhap"
+                onPress={() => contxtLogin(staEmail, staPassword)}
             />
 
-            <TouchableOpacity style={styles.forgotButton} onPress={() => { }}>
-                <Text style={styles.navButtonText}>Forgot Password?</Text>
+            <TouchableOpacity style={styles.forgotButton} onPress={() => { alert('Quen password') }}>
+                <Text style={styles.navButtonText}>Quen password?</Text>
             </TouchableOpacity>
 
             <View>
                 <SocialButton
-                    buttonTitle="Sign In with Google"
+                    buttonTitle="Dang nhap bang Google"
                     btnType="google"
                     color="#de4d41"
                     backgroundColor="#f5e7ea"
-                // onPress={() => googleLogin()}
+                // onPress={() => contxtGoogleLogin()}
                 />
             </View>
 
@@ -67,7 +68,7 @@ const LoginScreen = ({ navigation }) => {
                 style={styles.forgotButton}
                 onPress={() => navigation.navigate('Signup')}>
                 <Text style={styles.navButtonText}>
-                    Don't have an acount? Create here
+                    Bạn chưa có tài khoản? Hãy tạo tại đây
                 </Text>
             </TouchableOpacity>
         </ScrollView>
