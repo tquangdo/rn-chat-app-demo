@@ -20,6 +20,8 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+ios/GoogleService-Info.plist
+ios/rnChatAppDemo/Info.plist
 
 # Android/IntelliJ
 #
