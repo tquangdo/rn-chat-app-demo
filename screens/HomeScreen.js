@@ -1,26 +1,91 @@
-import React, { useContext } from 'react'
-import { View, Text } from 'react-native'
-import FormButton from '../components/FormButton'
-import { AuthContext } from '../navigation/AuthProvider'
 
-const HomeScreen = () => {
-    const _logOut = () => {
-        contxtLogout()
-    }
-    const { staUser, contxtLogout } = useContext(AuthContext)
+import React from 'react'
+import { FlatList } from 'react-native'
+import PostCard from '../components/PostCard'
+import { Container } from '../styles/FeedStyles'
+
+const PostsMockData = [
+    {
+        id: '1',
+        userName: 'Jenny Doe',
+        userImg: require('../assets/users/user-3.jpg'),
+        postTime: '4 mins ago',
+        post:
+            'Hey there, this is my test for a post of my social app in React Native.',
+        postImg: require('../assets/posts/post-img-3.jpg'),
+        liked: true,
+        likes: '14',
+        comments: '5',
+    },
+    {
+        id: '2',
+        userName: 'John Doe',
+        userImg: require('../assets/users/user-1.jpg'),
+        postTime: '2 hours ago',
+        post:
+            'Hey there, this is my test for a post of my social app in React Native.',
+        postImg: 'none',
+        liked: false,
+        likes: '8',
+        comments: '0',
+    },
+    {
+        id: '3',
+        userName: 'Ken William',
+        userImg: require('../assets/users/user-4.jpg'),
+        postTime: '1 hours ago',
+        post:
+            'Hey there, this is my test for a post of my social app in React Native.',
+        postImg: require('../assets/posts/post-img-2.jpg'),
+        liked: true,
+        likes: '1',
+        comments: '0',
+    },
+    {
+        id: '4',
+        userName: 'Selina Paul',
+        userImg: require('../assets/users/user-6.jpg'),
+        postTime: '1 day ago',
+        post:
+            'Hey there, this is my test for a post of my social app in React Native.',
+        postImg: require('../assets/posts/post-img-4.jpg'),
+        liked: true,
+        likes: '22',
+        comments: '4',
+    },
+    {
+        id: '5',
+        userName: 'Christy Alex',
+        userImg: require('../assets/users/user-7.jpg'),
+        postTime: '2 days ago',
+        post:
+            'Hey there, this is my test for a post of my social app in React Native.',
+        postImg: 'none',
+        liked: false,
+        likes: '0',
+        comments: '0',
+    },
+]
+const HomeScreen = ({ navigation }) => {
     return (
-        <View
-            style={{
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}
-        >
-            <Text>Xin chao {staUser.email}</Text>
-            <FormButton
-                buttonTitle='Dang xuat' onPress={() => _logOut()}
+        <Container>
+            <FlatList
+                data={PostsMockData}
+                renderItem={({ item }) => (
+                    <PostCard
+                        propItem={item}
+                    // propOnDelete={_handleDelete}
+                    // propOnPress={() =>
+                    //     navigation.navigate('HomeProfile', { navUserId: item.userId })
+                    // }
+                    />
+                )}
+                keyExtractor={(item) => item.id}
+                // ListHeaderComponent={ListHeader}
+                // ListFooterComponent={ListHeader}
+                showsVerticalScrollIndicator={false}
             />
-        </View>
+        </Container>
     )
 }
 
