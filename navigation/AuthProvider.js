@@ -1,7 +1,12 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { GoogleSignin } from '@react-native-community/google-signin'
+import WEB_CLIENT_ID from '../config/config'
 
+GoogleSignin.configure({
+    webClientId: WEB_CLIENT_ID,
+})
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [staUser, setStaUser] = useState(null);
@@ -11,6 +16,24 @@ export const AuthProvider = ({ children }) => {
             value={{
                 staUser,
                 setStaUser,
+                contxtGoogleLogin: async () => {
+                    try {
+                        // Get the users ID token
+                        const { idToken } = await GoogleSignin.signIn()
+                            .catch(err => {
+                                alert(err)
+                            })
+                        // Create a Google credential with the token
+                        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+                        // Sign-in the user with the credential
+                        await auth().signInWithCredential(googleCredential)
+                            .catch(error => {
+                                alert('Something went wrong with GG signin: ', error);
+                            });
+                    } catch (error) {
+                        alert({ error });
+                    }
+                },
                 contxtLogin: async (email, password) => {
                     try {
                         await auth().signInWithEmailAndPassword(email, password);
@@ -32,12 +55,10 @@ export const AuthProvider = ({ children }) => {
                                         createdAt: firestore.Timestamp.fromDate(new Date()),
                                         userImg: null,
                                     })
-                                    //ensure we catch any errors at this stage to advise us if something does go wrong
                                     .catch(error => {
                                         alert('Something went wrong with added user to firestore: ', error);
                                     })
                             })
-                            //we need to catch the whole sign up process if it fails too.
                             .catch(error => {
                                 alert('Something went wrong with sign up: ', error);
                             });

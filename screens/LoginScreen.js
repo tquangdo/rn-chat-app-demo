@@ -16,7 +16,7 @@ const LoginScreen = ({ navigation }) => {
     const [staEmail, setStaEmail] = useState();
     const [staPassword, setStaPassword] = useState();
     const { contxtLogin,
-        // contxtGoogleLogin
+        contxtGoogleLogin
     } = useContext(AuthContext);
 
     return (
@@ -60,7 +60,7 @@ const LoginScreen = ({ navigation }) => {
                     btnType="google"
                     color="#de4d41"
                     backgroundColor="#f5e7ea"
-                // onPress={() => contxtGoogleLogin()}
+                    onPress={() => contxtGoogleLogin()}
                 />
             </View>
 
