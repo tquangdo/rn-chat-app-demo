@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
                         // Sign-in the user with the credential
                         await auth().signInWithCredential(googleCredential)
                             .catch(error => {
-                                alert('Something went wrong with GG signin: ', error);
+                                alert('Something went wrong with GG signin: ' + error);
                             });
                     } catch (error) {
                         alert({ error });
@@ -56,11 +56,11 @@ export const AuthProvider = ({ children }) => {
                                         userImg: null,
                                     })
                                     .catch(error => {
-                                        alert('Something went wrong with added user to firestore: ', error);
+                                        alert('Something went wrong with added user to firestore: ' + error);
                                     })
                             })
                             .catch(error => {
-                                alert('Something went wrong with sign up: ', error);
+                                alert('Something went wrong with sign up: ' + error);
                             });
                     } catch (e) {
                         alert(e);
