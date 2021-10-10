@@ -7,3 +7,18 @@
 
 ## demos app
 ![demo](screenshots/demo.gif)
+
+## setting choose "photos" in ios simulator
+- `ios/rnChatAppDemo/Info.plist`, add these codes:
+```shell
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Advertisement would like to store a photo.</string>
+	<key>NSCameraUsageDescription</key>
+	<string/>
+```
+
+## warning
+- there is a warning like this: `EventEmitter.removeListener('change', ...): Method has been deprecated. Please instead use 'remove()' on the subscription returned by EventEmitter.addListener`
+- the reason is due to `@react-native-community`
+- `warning " > @react-native-community/async-storage@1.12.1" has incorrect peer dependency "react@^16.8"`
+- reference: [stackoverflow](https://stackoverflow.com/a/69252029)

@@ -24,6 +24,7 @@ const FeedStack = ({ navigation }) => (
             name="Home"
             component={HomeScreen}
             options={{
+                title: 'Trang chủ',
                 headerTitleAlign: 'center',
                 headerTitleStyle: {
                     color: '#2e64e5',
@@ -50,7 +51,6 @@ const FeedStack = ({ navigation }) => (
             name="AddPost"
             component={AddPostScreen}
             options={{
-                title: '',
                 headerTitleAlign: 'center',
                 headerStyle: {
                     backgroundColor: '#2e64e515',
@@ -69,7 +69,6 @@ const FeedStack = ({ navigation }) => (
             name="Profile"
             component={ProfileScreen}
             options={{
-                title: '',
                 headerTitleAlign: 'center',
                 headerStyle: {
                     backgroundColor: '#fff',
@@ -92,10 +91,11 @@ const MessageStack = () => (
         <Stack.Screen
             name="Chat"
             component={ChatScreen}
-        // options={({ route }) => ({
-        //     title: route.params.userName,
-        //     headerBackTitleVisible: false,
-        // })}
+            options={({ route }) => ({
+                title: 'Tin nhắn',
+                // title: route.params.userName,
+                headerBackTitleVisible: false,
+            })}
         />
     </Stack.Navigator>
 );
@@ -142,7 +142,7 @@ const AppStack = () => {
                 name="Home"
                 component={FeedStack}
                 options={({ route }) => ({
-                    tabBarLabel: 'Home',
+                    tabBarLabel: 'Trang chủ',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons
                             name="home-outline"
@@ -157,6 +157,7 @@ const AppStack = () => {
                 component={MessageStack}
                 options={({ route }) => ({
                     tabBarVisible: getTabBarVisibility(route),
+                    tabBarLabel: 'Tin nhắn',
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons
                             name="chatbox-ellipses-outline"
@@ -170,6 +171,7 @@ const AppStack = () => {
                 name="Profile"
                 component={ProfileStack}
                 options={{
+                    tabBarLabel: 'Trang cá nhân',
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="person-outline" color={color} size={size} />
                     ),
